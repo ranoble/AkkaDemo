@@ -1,29 +1,26 @@
 package uk.co.tangentlabs.akka.actor;
 
-import java.util.Map;
-
-import uk.co.tangentlabs.akka.actions.LogAction;
+import uk.co.tangentlabs.akka.actions.Email;
 import uk.co.tangentlabs.akka.message.LogMessage;
 import uk.co.tangentlabs.akka.message.LogResult;
-
 import akka.actor.UntypedActor;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 
 
-public class LoggingActor extends UntypedActor {
+public class SlowTaskActor extends UntypedActor {
 	LoggingAdapter log = Logging.getLogger(getContext().system(), this);
-	Map<Class, LogAction> actions;
+	private Email email;
 	
-	public LoggingActor(Map<Class, LogAction> actions){
-		this.actions = actions;
+	public SlowTaskActor(Email email){
+		this.email = email;
 	}
 
 	@Override
 	public void onReceive(Object message) throws Exception {
-		if (actions.containsKey(message.getClass())){
-			LogAction action =  actions.get(message.getClass());
-			action.log((LogMessage)message);
+		if (message instanceof uk.co.tangentlabs.akka.message.Error){
+			
+			email.log((LogMessage)message);
 			
 		} else {
 			log.error(message.getClass().getCanonicalName());

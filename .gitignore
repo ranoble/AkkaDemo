@@ -1,5 +1,5 @@
 build
-target
+target/**
 jcs_swap
 bin
 .classpath
