@@ -36,10 +36,10 @@ public class AkkaRunner {
 	 */
 	public static void main(String[] args) {
 		System.out.println("Hello Akka");
-		AkkaRunner runner = new AkkaRunner();
-		runner.sendMessagesLikeCrazy();
-		runner.prompt();
-		
+//		AkkaRunner runner = new AkkaRunner();
+//		runner.sendMessagesLikeCrazy();
+//		runner.prompt();
+//		
 		System.exit(0);
 	}
 	
@@ -113,8 +113,8 @@ public class AkkaRunner {
 			Class[] levels = new Class[]{
 					Debug.class, 
 					Info.class, 
-					Warn.class
-//					uk.co.tangentlabs.akka.message.Error.class
+					Warn.class,
+					uk.co.tangentlabs.akka.message.Error.class
 					};
 			Random r = new Random();
 			RandomString randomCaller = new RandomString(10);

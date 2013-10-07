@@ -20,7 +20,7 @@ public class ConductingActor extends UntypedActor {
 	LoggingAdapter log = Logging.getLogger(getContext().system(), this);
 	public static final int workers = 3;
 	private final ActorRef workerRouter;
-	private final ActorRef slowTaskActor;
+//	private final ActorRef slowTaskActor;
 	private int messages;
 	
 	public ConductingActor(){
@@ -40,21 +40,21 @@ public class ConductingActor extends UntypedActor {
 						workers)), "workerRouter");
 		messages = 0;
 		
-		slowTaskActor = this.getContext().actorOf(new Props(new UntypedActorFactory() {
-			public UntypedActor create() {
-				return new SlowTaskActor(new Email(null));
-			}
-		}), "master");
+//		slowTaskActor = this.getContext().actorOf(new Props(new UntypedActorFactory() {
+//			public UntypedActor create() {
+//				return new SlowTaskActor(new Email(null));
+//			}
+//		}), "master");
 	}
 	
 //	private Router getRouter
 
 	@Override
 	public void onReceive(Object message) throws Exception {
-		if (message instanceof uk.co.tangentlabs.akka.message.Error){
-			slowTaskActor.tell(message);
-		} else 
-		
+//		if (message instanceof uk.co.tangentlabs.akka.message.Error){
+//			slowTaskActor.tell(message);
+//		} else 
+//		
 		if (message instanceof LogMessage){
 			workerRouter.tell(message, getSelf());
 		} else if (message instanceof LogResult){
