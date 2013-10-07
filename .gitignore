@@ -1,0 +1,7 @@
+build
+target
+jcs_swap
+bin
+.classpath
+.settings
+.DS_Store
