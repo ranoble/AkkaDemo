@@ -128,7 +128,7 @@ public class AkkaRunner {
 				String message = randomMessage.nextString();
 				LogMessage log = (LogMessage) construct.newInstance(new Object[]{caller, message});
 				master.tell(log);
-			} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
